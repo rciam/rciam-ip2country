@@ -34,20 +34,3 @@ class countryStatistics(object):
     for item in countryStatisticsList:
       values += "INSERT INTO {0}(date, sourceidp, service, countrycode, country, count) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', {6}) ON CONFLICT (date, sourceidp, service, countrycode) DO UPDATE SET count = {0}.count + 1;".format(countryStatistics.STATISTICSTABLE, item.date, item.sourceIdp, item.service, item.countrycode, item.country, 1)
     pgConn.execute_insert(values)
-    
-
-""" CREATE TABLE statistics_country (
-id SERIAL PRIMARY KEY,
-date DATE NOT NULL,
-sourceidp character varying(255) NOT NULL,
-service character varying(255) NOT NULL,
-countrycode character varying(2) NOT NULL,
-count int NOT NULL
-);
-
-CREATE INDEX statistics_country_i1 ON statistics_country (date);
-CREATE INDEX statistics_country_i2 ON statistics_country (sourceidp);
-CREATE INDEX statistics_country_i3 ON statistics_country (service);
-CREATE INDEX statistics_country_i4 ON statistics_country (countrycode);
-CREATE UNIQUE INDEX idx_statistics_country ON statistics_country(date, sourceidp, service, countrycode);
- """
