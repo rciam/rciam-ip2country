@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from Model.pgConnector import pgConnector
 from Utils import config
 class countryStatistics(object):

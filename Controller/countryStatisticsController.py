@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from datetime import date, timedelta
 from Model.ipStatistics import ipStatistics
 from Model.countryStatistics import countryStatistics
