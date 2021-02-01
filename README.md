@@ -20,6 +20,7 @@ sudo apt install libgeoip1 libgeoip-dev geoip-bin
 ```
 git clone https://github.com/rciam/rciam-map-ip-to-country.git
 cd rciam-map-ip-to-country
+cp configuration.ini.example configuration.ini
 vi configuration.ini
 ```
 
