@@ -7,8 +7,8 @@ password=db_password
 
 [tables]
 
-country_table=statistics_country
 ip_table=statistics_ip
+country_table=statistics_country
 user_country_table=statistics_user_country
 
 [logging]

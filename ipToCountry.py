@@ -20,7 +20,7 @@ class ipToCountry:
       # get network address
       ipaddr = ipaddress.ip_network(item.ip).network_address
       # print(ipaddr)
-      # get country code
+      # get country code/ name
       countryData = ipDatabaseHandler.getCountryFromIp(str(ipaddr), item.ipVersion)
       if(countryData[0] != None):
         countryStatisticsItem = countryStatistics(None, item.accessed, item.sourceIdp, item.service, countryData[0], countryData[1], 1)
@@ -38,8 +38,6 @@ class ipToCountry:
     userCountryStatistics.saveAll(usercountryStatsList)
     self.logger.info("{0} ips mapped to countries".format(savedItems))
 
-      
-
-
+#run script      
 ipToCountry.mapIpToCountry()
     
