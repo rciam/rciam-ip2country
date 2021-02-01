@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from Model.countryStatistics import countryStatistics
 from Model.userCountryStatistics import userCountryStatistics
 from Controller.countryStatisticsController import countryStatisticsController

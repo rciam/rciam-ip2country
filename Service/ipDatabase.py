@@ -1,4 +1,3 @@
-#!/usr/bin/python
 from abc import ABC, abstractmethod
 from Model.ipStatistics import ipStatistics
 import GeoIP
