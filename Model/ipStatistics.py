@@ -34,7 +34,4 @@ class ipStatistics(object):
       data.append(ipData)
     return data
 
-#ipStat = ipStatistics.getIpStatisticsByDate('2021-01-01 00:00:00','2021-01-01 23:59:59')
-#print(ipStat)
-
 

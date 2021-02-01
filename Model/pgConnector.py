@@ -94,11 +94,4 @@ class pgConnector:
 
     print('Database connection closed.')
 
-""" p1 = pgConnector("database.ini","postgresql")
-print(p1)
-#p1.connect()
-p1.execute("SELECT version()")
-p1.close()
-p2 = pgConnector("database.ini","postgresql")
-print(p2) """
 

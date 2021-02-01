@@ -36,12 +36,6 @@ class countryStatistics(object):
     pgConn.execute_insert(values)
     
 
-
-  
- 
-
-#countryStatistics.getLastDate()
-
 """ CREATE TABLE statistics_country (
 id SERIAL PRIMARY KEY,
 date DATE NOT NULL,
