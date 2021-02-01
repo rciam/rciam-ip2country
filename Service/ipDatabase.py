@@ -19,4 +19,3 @@ class geoipDatabase(ipDatabase):
       print(giV6.country_code_by_addr_v6(ip))
       return [giV6.country_code_by_addr_v6(ip),giV6.country_name_by_addr_v6(ip)]
 
-#geoipDatabase.getCountryFromIp()

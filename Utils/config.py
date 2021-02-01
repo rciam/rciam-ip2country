@@ -14,7 +14,7 @@ def getConfig(section='postgresql'):
 
       # get section, default to postgresql
 
-      db = {}
+      config = {}
 
       if parser.has_section(section):
 
@@ -22,11 +22,11 @@ def getConfig(section='postgresql'):
 
           for param in params:
 
-              db[param[0]] = param[1]
+              config[param[0]] = param[1]
 
       else:
 
-          raise Exception('Section {0} not found in the {1} file'.format(section, filename))
+          raise Exception('Section {0} not found in the {1} file'.format(section, CONFIG_FILE))
 
       
-      return db
+      return config

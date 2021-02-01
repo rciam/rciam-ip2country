@@ -24,6 +24,4 @@ class countryStatisticsController:
     countryStatistics.save(data)
     return data
 
-#cC = countryStatisticsController.getDataNotMapped()
-#print(cC)
     
