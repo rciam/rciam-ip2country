@@ -19,9 +19,5 @@ class countryStatisticsController:
       
       result = ipStatistics.getIpStatisticsByDate(dayFrom, dateTo)
     return result
-  @classmethod
-  def saveMappedData(self, data):
-    countryStatistics.save(data)
-    return data
 
     

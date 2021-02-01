@@ -20,11 +20,9 @@ class countryStatistics(object):
 
   @classmethod
   def save(self, countryStatistics):
-    pgConn = pgConnector()
-    
-    print("INSERT INTO statistics_country(date, sourceidp, service, countrycode, country, count) VALUES ('{0}', '{1}', '{2}', '{3}', '{4}', {5}) ON CONFLICT (date, sourceidp, service, countrycode) DO UPDATE SET count = statistics_country.count + 1".format(countryStatistics.date, countryStatistics.sourceIdp, countryStatistics.service, countryStatistics.countrycode,  countryStatistics.country, 1))
+    pgConn = pgConnector()  
     pgConn.execute_insert(
-      "INSERT INTO {0}(date, sourceidp, service, countrycode, country, count) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', {6}) ON CONFLICT (date, sourceidp, service, countrycode) DO UPDATE SET count = statistics_country.count + 1".format(countryStatistics.STATISTICSTABLE, countryStatistics.date, countryStatistics.sourceIdp, countryStatistics.service, countryStatistics.countrycode, countryStatistics.country, 1)
+      "INSERT INTO {0}(date, sourceidp, service, countrycode, country, count) VALUES ('{1}', '{2}', '{3}', '{4}', '{5}', {6}) ON CONFLICT (date, sourceidp, service, countrycode) DO UPDATE SET count = {0}.count + 1".format(countryStatistics.STATISTICSTABLE, countryStatistics.date, countryStatistics.sourceIdp, countryStatistics.service, countryStatistics.countrycode, countryStatistics.country, 1)
     )
   
   @classmethod
