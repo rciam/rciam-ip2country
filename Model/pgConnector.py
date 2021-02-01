@@ -21,15 +21,8 @@ def singleton(theClass):
 class pgConnector:
   
   conn = None
-  #__instance = None
-  #@staticmethod 
-  #def getInstance():
-  #    """ Static access method. """
-  #    if pgConnector.__instance == None:
-  #       pgConnector()
-  #    return pgConnector.__instance
 
-  def __init__(self, filename = "database.ini", section = "postgresql"):
+  def __init__(self, filename = "configuration.ini", section = "postgresql"):
 
     self.filename = filename
     self.section = section
@@ -38,7 +31,7 @@ class pgConnector:
       self.conn = psycopg2.connect(**self.params)
     print (self.params)
 
-  def config(self, filename='database.ini', section='postgresql'):
+  def config(self, filename='configuration.ini', section='postgresql'):
 
     # create a parser
 
@@ -47,8 +40,6 @@ class pgConnector:
     # read config file
 
     parser.read(filename)
-
-
 
     # get section, default to postgresql
 

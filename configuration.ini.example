@@ -1,19 +1,18 @@
 [postgresql]
 
 host=localhost
-
-database=egi_dev_proxy
-
-user=egi_dev_proxy
-
-password=egi_dev_pr0X^
+database=db_name
+user=db_user
+password=db_password
 
 [tables]
 
 country_table=statistics_country
 ip_table=statistics_ip
+user_country_table=statistics_user_country
 
 [logging]
 
 level = INFO
+folder = log
 file = ipToCountry.log

@@ -1,7 +1,7 @@
 #!/usr/bin/python
 from configparser import ConfigParser
 
-CONFIG_FILE = 'database.ini'
+CONFIG_FILE = 'configuration.ini'
 
 def getConfig(section='postgresql'):
 
