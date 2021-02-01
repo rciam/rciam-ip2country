@@ -33,20 +33,3 @@ class userCountryStatistics(object):
     for item in userCountryStatisticsList:
       values += "INSERT INTO {0}(date, userid, countrycode, country, count) VALUES ('{1}', '{2}', '{3}', '{4}', {5}) ON CONFLICT (date, userid, countrycode) DO UPDATE SET count = {0}.count + 1;".format(userCountryStatistics.USERCOUNTRYTABLE, item.date, item.userid, item.countrycode, item.country, item.count)
     pgConn.execute_insert(values)
-
-
-""" CREATE TABLE statistics_user_country (
-id SERIAL PRIMARY KEY,
-date DATE NOT NULL,
-userid character varying(255) NOT NULL,
-countrycode character varying(2) NOT NULL,
-country character varying(255) NOT NULL,
-count int NOT NULL
-);
-
-CREATE INDEX statistics_user_country_i1 ON statistics_user_country (date);
-CREATE INDEX statistics_user_country_i2 ON statistics_user_country (userid);
-CREATE INDEX statistics_user_country_i3 ON statistics_user_country (countrycode);
-CREATE INDEX statistics_user_country_i4 ON statistics_user_country (country);
-CREATE UNIQUE INDEX idx_statistics_user_country ON statistics_user_country(date, userid, countrycode);
- """
