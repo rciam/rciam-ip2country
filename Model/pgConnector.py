@@ -16,12 +16,11 @@ def singleton(theClass):
 
     return getInstance
 
-@singleton
 class pgConnector:
   
   conn = None
 
-  def __init__(self, filename = "configuration.ini", section = "postgresql"):
+  def __init__(self, filename = "configuration.ini", section = "source_database"):
 
     self.filename = filename
     self.section = section
@@ -30,7 +29,7 @@ class pgConnector:
       self.conn = psycopg2.connect(**self.params)
     print (self.params)
 
-  def config(self, filename='configuration.ini', section='postgresql'):
+  def config(self, filename='configuration.ini', section='source_database'):
 
     # create a parser
 
@@ -40,7 +39,7 @@ class pgConnector:
 
     parser.read(filename)
 
-    # get section, default to postgresql
+    # get section, default to source_database
 
     db = {}
 
@@ -81,7 +80,7 @@ class pgConnector:
 
     return cur.fetchall()
 
-  def execute_insert(self, query):
+  def execute_and_commit(self, query):
     cur = self.conn.cursor()
     cur.execute(query)
     #id = cur.fetchone()[0]
@@ -94,4 +93,14 @@ class pgConnector:
 
     print('Database connection closed.')
 
+# Subclass of pgConnector
+@singleton
+class sourcePgConnector(pgConnector):
+   def __init__(self, filename = "configuration.ini", section = "source_database"):
+     super().__init__(filename, section)
 
+# Subclass of pgConnector
+@singleton
+class destinationPgConnector(pgConnector):
+   def __init__(self, filename = "configuration.ini", section = "destination_database"):
+     super().__init__(filename, section)

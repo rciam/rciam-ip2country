@@ -29,6 +29,7 @@ Create a Python virtualenv, install dependencies, and run the script
 virtualenv -p python3 .venv
 source .venv/bin/activate
 (venv) pip3 install -r requirements.txt
+(venv) python3 -m Utils.install
 (venv) python3 iptoCountry.py
 🍺
 ```

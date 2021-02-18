@@ -1,13 +1,23 @@
-[postgresql]
+[source_database]
 
 host=localhost
 database=db_name
 user=db_user
 password=db_password
 
-[tables]
+[source_tables]
 
 ip_table=statistics_ip
+
+[destination_database]
+
+host=localhost
+database=db_name
+user=db_user
+password=db_password
+
+[destination_tables]
+
 country_table=statistics_country
 user_country_table=statistics_user_country
 

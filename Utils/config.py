@@ -2,7 +2,7 @@ from configparser import ConfigParser
 
 CONFIG_FILE = 'configuration.ini'
 
-def getConfig(section='postgresql'):
+def getConfig(section='source_database'):
 
       # create a parser
 
@@ -12,7 +12,7 @@ def getConfig(section='postgresql'):
 
       parser.read(CONFIG_FILE)
 
-      # get section, default to postgresql
+      # get section, default to source_database
 
       config = {}
 

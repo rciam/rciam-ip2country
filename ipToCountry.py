@@ -33,10 +33,11 @@ class ipToCountry:
       else:
         self.logger.warning("ip {0} not found at database".format(ipaddr))
     
-    # save data to tables
-    countryStatistics.saveAll(countryStatsList)
-    userCountryStatistics.saveAll(usercountryStatsList)
-    self.logger.info("{0} ips mapped to countries".format(savedItems))
+    # save data to tables if any
+    if countryStatsList:
+      countryStatistics.saveAll(countryStatsList)
+      userCountryStatistics.saveAll(usercountryStatsList)
+      self.logger.info("{0} ips mapped to countries".format(savedItems))
 
 #run script      
 ipToCountry.mapIpToCountry()

@@ -1,8 +1,8 @@
-from Model.pgConnector import pgConnector
+from Model.pgConnector import sourcePgConnector
 from Utils import config
 
 class ipStatistics(object):
-  IPSTATISTICSTABLE = config.getConfig('tables')['ip_table']
+  IPSTATISTICSTABLE = config.getConfig('source_tables')['ip_table']
   def __init__(self, accessed, sourceIdp, service, userid, ip, ipVersion):
     self.accessed = accessed
     self.sourceIdp = sourceIdp
@@ -13,7 +13,7 @@ class ipStatistics(object):
   
   @classmethod
   def getIpStatisticsByDate(self, dateFrom, dateTo):
-    pgConn = pgConnector()
+    pgConn = sourcePgConnector()
     
     result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0} WHERE accessed BETWEEN  '{1}' AND '{2}'".format(ipStatistics.IPSTATISTICSTABLE, dateFrom, dateTo)))
     data = []
@@ -25,7 +25,7 @@ class ipStatistics(object):
 
   @classmethod
   def getAllIpStatistics(self):
-    pgConn = pgConnector()
+    pgConn = sourcePgConnector()
     result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0}".format(ipStatistics.IPSTATISTICSTABLE)))
     data = []
     for row in result:
