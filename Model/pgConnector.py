@@ -1,6 +1,9 @@
 from configparser import ConfigParser
-
+import sys
 import psycopg2
+# import the error handling libraries for psycopg2
+from psycopg2 import OperationalError, errorcodes, errors
+from Logger import log
 
 def singleton(theClass):
     """ decorator for a class to make a singleton out of it """
@@ -17,7 +20,7 @@ def singleton(theClass):
     return getInstance
 
 class pgConnector:
-  
+  logger = log.get_logger("pgConnector")
   conn = None
 
   def __init__(self, filename = "configuration.ini", section = "source_database"):
@@ -26,71 +29,52 @@ class pgConnector:
     self.section = section
     self.params = self.config(filename, section)
     if self.conn == None:
-      self.conn = psycopg2.connect(**self.params)
-    print (self.params)
+      try:
+        print('Connecting to the PostgreSQL database...')
+        self.conn = psycopg2.connect(**self.params)
+      except psycopg2.OperationalError as err:
+        self.logger.error(str(err).strip())
+        sys.exit(1)
 
   def config(self, filename='configuration.ini', section='source_database'):
 
     # create a parser
-
     parser = ConfigParser()
 
     # read config file
-
     parser.read(filename)
 
     # get section, default to source_database
-
     db = {}
 
     if parser.has_section(section):
-
         params = parser.items(section)
-
         for param in params:
-
             db[param[0]] = param[1]
-
     else:
-
         raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
     return db
 
-
-  def connect(self):
-
-    # connect to the PostgreSQL server
-
-    print('Connecting to the PostgreSQL database...')
-
-    self.conn = psycopg2.connect(**self.params)
-
   def execute_select(self, query):
 
     # create a cursor
-
     cur = self.conn.cursor()
 
     # execute a statement
-
-    #print('PostgreSQL database version:')
-
     cur.execute(query)
 
     return cur.fetchall()
 
   def execute_and_commit(self, query):
+
     cur = self.conn.cursor()
     cur.execute(query)
-    #id = cur.fetchone()[0]
     self.conn.commit()
-
 
   def close(self):
 
     self.conn.close()
-
     print('Database connection closed.')
 
 # Subclass of pgConnector
