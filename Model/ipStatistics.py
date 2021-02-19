@@ -18,7 +18,6 @@ class ipStatistics(object):
     result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0} WHERE accessed BETWEEN  '{1}' AND '{2}'".format(ipStatistics.IPSTATISTICSTABLE, dateFrom, dateTo)))
     data = []
     for row in result:
-      #print(row)
       ipData = ipStatistics(row[0], row[1], row[2], row[3], row[4], row[5])
       data.append(ipData)
     return data
@@ -29,7 +28,6 @@ class ipStatistics(object):
     result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0}".format(ipStatistics.IPSTATISTICSTABLE)))
     data = []
     for row in result:
-      print(row[0])
       ipData = ipStatistics(row[0], row[1], row[2], row[3], row[4], row[5])
       data.append(ipData)
     return data

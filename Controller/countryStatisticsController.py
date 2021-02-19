@@ -7,7 +7,7 @@ class countryStatisticsController:
   def getDataNotMapped(self):
     dateFrom = countryStatistics.getLastDate()
     
-    print(dateFrom[0][0])
+    # we dont have any country statistics saved
     if dateFrom[0][0] == None:
       result = ipStatistics.getAllIpStatistics()
     else:

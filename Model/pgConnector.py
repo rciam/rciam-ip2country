@@ -30,7 +30,7 @@ class pgConnector:
     self.params = self.config(filename, section)
     if self.conn == None:
       try:
-        print('Connecting to the PostgreSQL database...')
+        self.logger.debug('Connecting to the PostgreSQL database...')
         self.conn = psycopg2.connect(**self.params)
       except psycopg2.OperationalError as err:
         self.logger.error(str(err).strip())
@@ -48,11 +48,12 @@ class pgConnector:
     db = {}
 
     if parser.has_section(section):
-        params = parser.items(section)
-        for param in params:
-            db[param[0]] = param[1]
+      params = parser.items(section)
+      for param in params:
+        db[param[0]] = param[1]
     else:
-        raise Exception('Section {0} not found in the {1} file'.format(section, filename))
+      self.logger.error('Section {0} not found in the {1} file'.format(section, filename))
+      raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
     return db
 
@@ -67,15 +68,19 @@ class pgConnector:
     return cur.fetchall()
 
   def execute_and_commit(self, query):
-
-    cur = self.conn.cursor()
-    cur.execute(query)
-    self.conn.commit()
+    
+    try:
+      cur = self.conn.cursor()
+      cur.execute(query)
+      self.conn.commit()
+    except Exception as err:
+      self.logger.error(str(err).strip())
+      sys.exit(1)  
 
   def close(self):
 
     self.conn.close()
-    print('Database connection closed.')
+    self.logger.debug('Database connection closed.')
 
 # Subclass of pgConnector
 @singleton
