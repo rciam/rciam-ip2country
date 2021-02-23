@@ -30,7 +30,7 @@ virtualenv -p python3 .venv
 source .venv/bin/activate
 (venv) pip3 install -r requirements.txt
 (venv) python3 -m Utils.install
-(venv) python3 iptoCountry.py
+(venv) python3 ipToCountry.py
 🍺
 ```
 

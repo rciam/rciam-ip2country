@@ -1,5 +1,6 @@
 from Model.pgConnector import sourcePgConnector
 from Utils import config
+from datetime import date, timedelta
 
 class ipStatistics(object):
   IPSTATISTICSTABLE = config.getConfig('source_tables')['ip_table']
@@ -24,8 +25,10 @@ class ipStatistics(object):
 
   @classmethod
   def getAllIpStatistics(self):
+    yesterday = date.today() - timedelta(days=1)
+    dateTo = yesterday.strftime('%Y-%m-%d 23:59:59')
     pgConn = sourcePgConnector()
-    result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0}".format(ipStatistics.IPSTATISTICSTABLE)))
+    result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0} WHERE accessed <= {1}".format(ipStatistics.IPSTATISTICSTABLE, dateTo)))
     data = []
     for row in result:
       ipData = ipStatistics(row[0], row[1], row[2], row[3], row[4], row[5])
