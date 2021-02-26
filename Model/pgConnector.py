@@ -32,8 +32,6 @@ class pgConnector:
       try:
         self.logger.debug('Connecting to the PostgreSQL database...')
         self.conn = psycopg2.connect(**self.params)
-        # Set timezone to UTC for the session
-        self.set_timezone('UTC')
       except psycopg2.OperationalError as err:
         self.logger.error(str(err).strip())
         sys.exit(1)
@@ -58,13 +56,6 @@ class pgConnector:
       raise Exception('Section {0} not found in the {1} file'.format(section, filename))
 
     return db
-
-  def set_timezone(self, timezone):
-    # create a cursor
-    cur = self.conn.cursor()
-
-    # execute a statement
-    cur.execute("SET TIME ZONE '{0}'".format(timezone))
 
   def execute_select(self, query):
 
