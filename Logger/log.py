@@ -1,11 +1,11 @@
 import logging
 import sys
-from Utils import config
+from Utils import configParser
 from logging.handlers import TimedRotatingFileHandler
 
 FORMATTER = logging.Formatter("%(asctime)s - %(name)s - %(levelname)s - %(message)s")
-LOG_FILE = "{0}/{1}".format(config.getConfig('logging')['folder'] ,config.getConfig('logging')['file'])
-LEVEL = config.getConfig('logging')['level']
+LOG_FILE = "{0}/{1}".format(configParser.getConfig('logging')['folder'] ,configParser.getConfig('logging')['file'])
+LEVEL = configParser.getConfig('logging')['level']
 
 def get_console_handler():
 	console_handler = logging.StreamHandler(sys.stdout)

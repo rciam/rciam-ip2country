@@ -1,7 +1,7 @@
 from Model.pgConnector import destinationPgConnector
-from Utils import config
+from Utils import configParser
 class userCountryStatistics(object):
-  USERCOUNTRYTABLE = config.getConfig('destination_tables')['user_country_table']
+  USERCOUNTRYTABLE = configParser.getConfig('destination_tables')['user_country_table']
 
   def __init__(self, id, date, userid, countrycode, country, count):
     self.id = id

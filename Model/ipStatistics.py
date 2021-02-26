@@ -1,9 +1,9 @@
 from Model.pgConnector import sourcePgConnector
-from Utils import config
+from Utils import configParser
 from datetime import date, timedelta
 
 class ipStatistics(object):
-  IPSTATISTICSTABLE = config.getConfig('source_tables')['ip_table']
+  IPSTATISTICSTABLE = configParser.getConfig('source_tables')['ip_table']
   def __init__(self, accessed, sourceIdp, service, userid, ip, ipVersion):
     self.accessed = accessed
     self.sourceIdp = sourceIdp

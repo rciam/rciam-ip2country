@@ -1,6 +1,6 @@
 from configparser import ConfigParser
 
-CONFIG_FILE = 'configuration.ini'
+CONFIG_FILE = 'config.py'
 
 def getConfig(section='source_database'):
 

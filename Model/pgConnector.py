@@ -23,7 +23,7 @@ class pgConnector:
   logger = log.get_logger("pgConnector")
   conn = None
 
-  def __init__(self, filename = "configuration.ini", section = "source_database"):
+  def __init__(self, filename = "config.py", section = "source_database"):
 
     self.filename = filename
     self.section = section
@@ -38,7 +38,7 @@ class pgConnector:
         self.logger.error(str(err).strip())
         sys.exit(1)
 
-  def config(self, filename='configuration.ini', section='source_database'):
+  def config(self, filename='config.py', section='source_database'):
 
     # create a parser
     parser = ConfigParser()
@@ -94,11 +94,11 @@ class pgConnector:
 # Subclass of pgConnector
 @singleton
 class sourcePgConnector(pgConnector):
-   def __init__(self, filename = "configuration.ini", section = "source_database"):
+   def __init__(self, filename = "config.py", section = "source_database"):
      super().__init__(filename, section)
 
 # Subclass of pgConnector
 @singleton
 class destinationPgConnector(pgConnector):
-   def __init__(self, filename = "configuration.ini", section = "destination_database"):
+   def __init__(self, filename = "config.py", section = "destination_database"):
      super().__init__(filename, section)

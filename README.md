@@ -20,8 +20,8 @@ sudo apt install libgeoip1 libgeoip-dev geoip-bin
 ```
 git clone https://github.com/rciam/rciam-map-ip-to-country.git
 cd rciam-map-ip-to-country
-cp configuration.ini.example configuration.ini
-vi configuration.ini
+cp config.py.example config.py
+vi config.py
 ```
 
 Create a Python virtualenv, install dependencies, and run the script
