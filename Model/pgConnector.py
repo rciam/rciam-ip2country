@@ -64,7 +64,7 @@ class pgConnector:
     cur = self.conn.cursor()
 
     # execute a statement
-    cur.execute("SET TIME ZONE '{1}'".format(timezone))
+    cur.execute("SET TIME ZONE '{0}'".format(timezone))
 
   def execute_select(self, query):
 
