@@ -1,11 +1,6 @@
 # rciam-map-ip-to-country
 A Python-based tool for mapping ips to countries and store the respective login information to a DB.
 ## Prerequisites
-For installing psycopg2 you will need to run:
-```
-sudo apt install python3-dev
-sudo apt install libpq-dev
-```
 If you want to use MaxMind GeoIP Databases(free version), MaxMind provides a PPA for recent version of Ubuntu. To add the PPA to your APT sources, run:
 ```
 sudo add-apt-repository ppa:maxmind/ppa
