@@ -5,6 +5,8 @@ If you want to use MaxMind GeoIP Databases(free version), MaxMind provides a PPA
 ```
 sudo add-apt-repository ppa:maxmind/ppa
 ```
+Also you must put the two .dat files (`GeoIP.dat` and `GeoIPv6.dat`) to the folder `databases`.
+
 Then install the packages by running:
 ```
 sudo apt update
