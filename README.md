@@ -1,17 +1,8 @@
 # rciam-ip2country
 A Python-based tool for mapping ips to countries and store the respective login information to a DB.
 ## Prerequisites
-If you want to use MaxMind GeoIP Databases(free version), MaxMind provides a PPA for recent version of Ubuntu. To add the PPA to your APT sources, run:
-```
-sudo add-apt-repository ppa:maxmind/ppa
-```
-Also you must put the two .dat files (`GeoIP.dat` and `GeoIPv6.dat`) to the folder `databases`.
-
-Then install the packages by running:
-```
-sudo apt update
-sudo apt install libgeoip1 libgeoip-dev geoip-bin
-```
+This script uses MaxMind GeoIP2 Databases (commercial version).
+You must put the .mmdb files (`GeoLite2-Country.mmdb`) to the folder `databases`.
 
 ## Installation
 ```
