@@ -1,7 +1,7 @@
 from Model.countryStatistics import countryStatistics
 from Model.userCountryStatistics import userCountryStatistics
 from Controller.countryStatisticsController import countryStatisticsController
-from Service.ipDatabase import geoipDatabase
+from Service.ipDatabase import geoip2Database
 from Logger import log
 import ipaddress
 
@@ -11,7 +11,7 @@ class ipToCountry:
   @classmethod
   def mapIpToCountry(self):
     # handler for ip databases
-    ipDatabaseHandler = geoipDatabase()
+    ipDatabaseHandler = geoip2Database()
     ipData = countryStatisticsController.getDataNotMapped()
     countryStatsList = []
     usercountryStatsList = []

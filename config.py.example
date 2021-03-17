@@ -26,3 +26,7 @@ user_country_table=statistics_user_country
 level = INFO
 folder = log
 file = ipToCountry.log
+
+[database_file]
+
+db_filename = GeoLite2-Country.mmdb
