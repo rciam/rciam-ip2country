@@ -1,3 +1,8 @@
+#!/usr/local/bin/python3
+import os
+import sys
+# change working directory
+os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
 from Model.countryStatistics import countryStatistics
 from Model.userCountryStatistics import userCountryStatistics
 from Controller.countryStatisticsController import countryStatisticsController
