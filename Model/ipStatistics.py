@@ -15,8 +15,10 @@ class ipStatistics(object):
   @classmethod
   def getIpStatisticsByDate(self, dateFrom, dateTo):
     pgConn = sourcePgConnector()
-    
-    result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0} WHERE accessed BETWEEN  '{1}' AND '{2}'".format(ipStatistics.IPSTATISTICSTABLE, dateFrom, dateTo)))
+    if(dateFrom != None):
+      result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0} WHERE accessed::date BETWEEN  '{1}' AND '{2}'".format(ipStatistics.IPSTATISTICSTABLE, dateFrom, dateTo)))
+    else:
+      result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0} WHERE accessed::date <= '{1}'".format(ipStatistics.IPSTATISTICSTABLE, dateTo)))
     data = []
     for row in result:
       ipData = ipStatistics(row[0], row[1], row[2], row[3], row[4], row[5])
@@ -28,7 +30,7 @@ class ipStatistics(object):
     yesterday = date.today() - timedelta(days=1)
     dateTo = yesterday.strftime('%Y-%m-%d 23:59:59')
     pgConn = sourcePgConnector()
-    result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0} WHERE accessed <= '{1}'".format(ipStatistics.IPSTATISTICSTABLE, dateTo)))
+    result = list(pgConn.execute_select("SELECT accessed::date, sourceidp, service, userid, ip, ipversion FROM {0} WHERE accessed::date <= '{1}'".format(ipStatistics.IPSTATISTICSTABLE, dateTo)))
     data = []
     for row in result:
       ipData = ipStatistics(row[0], row[1], row[2], row[3], row[4], row[5])
