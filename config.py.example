@@ -19,6 +19,7 @@ password=db_password
 [destination_tables]
 
 country_table=statistics_country
+country_hashed_table=statistics_country_hashed
 user_country_table=statistics_user_country
 
 [logging]
