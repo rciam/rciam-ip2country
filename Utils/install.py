@@ -2,7 +2,7 @@ from Model.pgConnector import destinationPgConnector
 from Model.countryStatistics import countryStatistics
 from Model.countryStatisticsHashedUserId import countryStatisticsHashedUserId
 from Model.ipStatistics import ipStatistics
-from Service.ipDatabase import geoip2Database
+from Service.ipDatabase import geoipDatabase
 from Logger import log
 import ipaddress
 
