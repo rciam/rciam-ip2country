@@ -1,4 +1,10 @@
+#!/usr/local/bin/python3
+import os
+import sys
+# change working directory
+os.chdir(os.path.dirname(os.path.abspath(sys.argv[0])))
 from Model.countryStatistics import countryStatistics
+from Model.countryStatisticsHashedUserId import countryStatisticsHashedUserId
 from Model.userCountryStatistics import userCountryStatistics
 from Controller.countryStatisticsController import countryStatisticsController
 from Service.ipDatabase import geoipDatabase
@@ -15,6 +21,7 @@ class ipToCountry:
     ipData = countryStatisticsController.getDataNotMapped()
     countryStatsList = []
     usercountryStatsList = []
+    countryStatsHashedList = []
     mappedItems = 0 
     for item in ipData:
       # get network address
@@ -32,11 +39,13 @@ class ipToCountry:
       countryStatsList.append(countryStatisticsItem)
       usercountryStatisticsItem = userCountryStatistics(None, item.accessed, item.userid, countryData[0], countryData[1], 1)
       usercountryStatsList.append(usercountryStatisticsItem)
-    
+      countryStatisticsHashedItem = countryStatisticsHashedUserId(None, item.accessed, item.userid, item.sourceIdp, item.service, countryData[0], countryData[1], 1)
+      countryStatsHashedList.append(countryStatisticsHashedItem)
     # save data to tables if any
     if countryStatsList:
       countryStatistics.saveAll(countryStatsList)
       userCountryStatistics.saveAll(usercountryStatsList)
+      countryStatisticsHashedUserId.saveAll(countryStatsHashedList)
       self.logger.info("{0} ips mapped to countries".format(mappedItems))
     else:
       self.logger.info("No new data found")
