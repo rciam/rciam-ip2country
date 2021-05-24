@@ -1,4 +1,4 @@
-from configparser import ConfigParser
+from configparser import RawConfigParser
 
 CONFIG_FILE = 'config.py'
 
@@ -6,7 +6,7 @@ def getConfig(section='source_database'):
 
       # create a parser
 
-      parser = ConfigParser()
+      parser = RawConfigParser()
 
       # read config file
 
