@@ -1,4 +1,4 @@
-from configparser import ConfigParser
+from configparser import RawConfigParser
 import sys
 import psycopg2
 # import the error handling libraries for psycopg2
@@ -39,7 +39,7 @@ class pgConnector:
   def config(self, filename='config.py', section='source_database'):
 
     # create a parser
-    parser = ConfigParser()
+    parser = RawConfigParser()
 
     # read config file
     parser.read(filename)
