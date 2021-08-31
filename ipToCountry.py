@@ -24,23 +24,26 @@ class ipToCountry:
     countryStatsHashedList = []
     mappedItems = 0 
     for item in ipData:
-      # get network address
-      ipaddr = ipaddress.ip_network(item.ip).network_address
-      # get country code/ name
-      countryData = ipDatabaseHandler.getCountryFromIp(str(ipaddr), item.ipVersion)
-      if(countryData[0] != None):
-        mappedItems +=1
-      else:
-        countryData[0] = 'UN'
-        countryData[1] = 'Unknown'
-        self.logger.warning("ip {0} not found at database".format(ipaddr))
+      try:
+        # get network address
+        ipaddr = ipaddress.ip_network(item.ip).network_address
+        # get country code/ name
+        countryData = ipDatabaseHandler.getCountryFromIp(str(ipaddr), item.ipVersion)
+        if(countryData[0] != None):
+          mappedItems +=1
+        else:
+          countryData[0] = 'UN'
+          countryData[1] = 'Unknown'
+          self.logger.warning("ip {0} not found at database".format(ipaddr))
 
-      countryStatisticsItem = countryStatistics(None, item.accessed, item.sourceIdp, item.service, countryData[0], countryData[1], 1)
-      countryStatsList.append(countryStatisticsItem)
-      usercountryStatisticsItem = userCountryStatistics(None, item.accessed, item.userid, countryData[0], countryData[1], 1)
-      usercountryStatsList.append(usercountryStatisticsItem)
-      countryStatisticsHashedItem = countryStatisticsHashedUserId(None, item.accessed, item.userid, item.sourceIdp, item.service, countryData[0], countryData[1], 1)
-      countryStatsHashedList.append(countryStatisticsHashedItem)
+        countryStatisticsItem = countryStatistics(None, item.accessed, item.sourceIdp, item.service, countryData[0], countryData[1], 1)
+        countryStatsList.append(countryStatisticsItem)
+        usercountryStatisticsItem = userCountryStatistics(None, item.accessed, item.userid, countryData[0], countryData[1], 1)
+        usercountryStatsList.append(usercountryStatisticsItem)
+        countryStatisticsHashedItem = countryStatisticsHashedUserId(None, item.accessed, item.userid, item.sourceIdp, item.service, countryData[0], countryData[1], 1)
+        countryStatsHashedList.append(countryStatisticsHashedItem)
+      except:
+        pass
     # save data to tables if any
     if countryStatsList:
       countryStatistics.saveAll(countryStatsList)
